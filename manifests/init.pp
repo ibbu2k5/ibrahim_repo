@@ -42,11 +42,20 @@
 #
 # Copyright 2018 Your name here, unless otherwise noted.
 #
-class web {
- 	class { 'web::install': }
- 	class { 'web::webdeploy': }
- 	class { 'web::services':}
+class web(
+
+
+String $class_package_name = $::web::params::package_name,
+String $class_service_name = $::web::params::service_name,
+String $class_server_ip    = $::web::params::server_ip,
+
+
+
+)   inherits ::web::params {
+
+        class { 'web::install': }
+        class { 'web::webdeploy': }
+        class { 'web::services': }
 
 }
-
 
